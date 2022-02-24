@@ -15,6 +15,7 @@ def wordleSolver(exclude):
         for i in exc:
             if i in word:
                 possible = False
+                break
         
         if possible:
             print(word)
