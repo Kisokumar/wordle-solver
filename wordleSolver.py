@@ -18,7 +18,6 @@ def wordleSolver(exclude):
         if possible:
             print(word)
      
-
 wordleSolver('abc')
 
 # input = abc
