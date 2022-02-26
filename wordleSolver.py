@@ -2,6 +2,7 @@ import sys
 wordsPath = sys.argv[1]
 
 def wordleSolver(exclude,correctPosition):
+    global results
     with open(wordsPath,'r') as possibleWords:
         possibleWords = possibleWords.read()
     
@@ -11,20 +12,20 @@ def wordleSolver(exclude,correctPosition):
 
     for word in possibleWords:
         temp = [c for c in word]
-        possible = True
+        correctWord = True
 
         for i in exc:
             if i in word:
-                possible = False
+                correctWord = False
                 break
         
         for i,j in enumerate(correctPosition):
             if j!='':
                 if temp[i]!=j:
-                    possible = False
+                    correctWord = False
 
 
-        if possible:
+        if correctWord:
             print(word)
      
 wordleSolver('elo',['a','','n','',''])
