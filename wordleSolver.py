@@ -1,5 +1,11 @@
+import os
 import sys
-wordsPath = sys.argv[1]
+
+if (len(sys.argv))==1:
+    wordsPath = 'possibleWords.txt'
+else:
+    wordsPath = sys.argv[1]
+
 
 def wordleSolver(exclude,correctPosition,wrongPosition,myLexicon):
     results = []
@@ -54,10 +60,12 @@ def getInformation():
         if correctPosition[i]=='':
             wrongPosition[i] = j+input(f"Type yellow letters in the position {i+1}:")
 
-words = sys.argv[1]
+def cls():
+    os.system('cls' if os.name == 'nt' else 'clear')
+cls()
 
 # wordleSolve)
-('aaiaidee',['a','i','','e',''],['','','','',''],words)
+('aaiaidee',['a','i','','e',''],['','','','',''],wordsPath)
 
 input(f'''
 - Throughout this program, you will be inputting letters from the wordle you are trying to solve.
@@ -72,9 +80,6 @@ input(f'''
 
 ''')
 
-def cls():
-    print(f"\033c")
-cls()
 
 x=0
 while 1:
@@ -82,11 +87,9 @@ while 1:
     x+=1
     getInformation()
     cls()
-    wordleSolver(exc,correctPosition,wrongPosition,words)
+    wordleSolver(exc,correctPosition,wrongPosition,wordsPath)
     input("\n\nPress any key to continue. . .")
     cls()
-
-
 
 # wordleSolver(incorrect letters,[correct position],[incorrect position], /path/to/words)
 # wordleSolver(grey letters,[list of green letters],[list of yellow letters], /path/to/words)
