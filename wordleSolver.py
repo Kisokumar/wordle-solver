@@ -36,10 +36,6 @@ def wordleSolver(exclude,correctPosition,wrongPosition,myLexicon):
     print('Number of possible words: ',len(results))
     print(results)
 
-def cls():
-    print(f"\033c")
-cls()
-
 exc,correctPosition,wrongPosition='elo',['a','','n','',''],['','','','','']
 
 def getInformation():
@@ -58,7 +54,40 @@ def getInformation():
         if correctPosition[i]=='':
             wrongPosition[i] = j+input(f"Type yellow letters in the position {i+1}:")
 
-wordleSolver(exc,correctPosition,wrongPosition,wordsPath)
+words = sys.argv[1]
+
+# wordleSolve)
+('aaiaidee',['a','i','','e',''],['','','','',''],words)
+
+input(f'''
+- Throughout this program, you will be inputting letters from the wordle you are trying to solve.
+
+- Make sure all inputs are lowercase and without any spaces.
+
+- When there is nothing to input, press the enter key to carry on.
+
+- When finished use ctrl+c to quit the program!
+
+- Make your first guess on the website and press any key to continue. . .
+
+''')
+
+def cls():
+    print(f"\033c")
+cls()
+
+x=0
+while 1:
+    print(x)
+    x+=1
+    getInformation()
+    cls()
+    wordleSolver(exc,correctPosition,wrongPosition,words)
+    input("\n\nPress any key to continue. . .")
+    cls()
+
+
+
 # wordleSolver(incorrect letters,[correct position],[incorrect position], /path/to/words)
 # wordleSolver(grey letters,[list of green letters],[list of yellow letters], /path/to/words)
 
