@@ -1,11 +1,35 @@
 import os
+import math
 import sys
 
+def cls():
+    os.system('cls' if os.name == 'nt' else 'clear')
+cls()
+
 if (len(sys.argv))==1:
-    wordsPath = 'possibleWords.txt'
+    wordsPath = 'nytAnswersAlphabetical.txt'
 else:
     wordsPath = sys.argv[1]
 
+def displayGrid(arr):
+    n = len(arr)        
+    m = round(math.sqrt(n))
+    if m==0:
+        exit
+    print(m)
+    for i in range((n//m)):
+        curr,x = [],i
+        for j in range(m):
+            if j<n:
+                curr.append(arr[x])
+                if m<=math.sqrt(n):    
+                    x+=(m)
+                elif m>math.sqrt(n):
+                    x+=(m-1)
+        print(curr)
+    curr,rem = [], (n%m)
+    if rem!=0:
+        print(arr[-rem:])
 
 def wordleSolver(exclude,correctPosition,wrongPosition,myLexicon):
     results = []
@@ -40,7 +64,7 @@ def wordleSolver(exclude,correctPosition,wrongPosition,myLexicon):
             results.append(word)
     
     print('Number of possible words: ',len(results))
-    print(results)
+    displayGrid(results)
 
 exc,correctPosition,wrongPosition='elo',['a','','n','',''],['','','','','']
 
@@ -60,9 +84,7 @@ def getInformation():
         if correctPosition[i]=='':
             wrongPosition[i] = j+input(f"Type yellow letters in the position {i+1}:")
 
-def cls():
-    os.system('cls' if os.name == 'nt' else 'clear')
-cls()
+
 
 # wordleSolve)
 ('aaiaidee',['a','i','','e',''],['','','','',''],wordsPath)
@@ -79,7 +101,6 @@ input(f'''
 - Make your first guess on the website and press any key to continue. . .
 
 ''')
-
 
 x=0
 while 1:
