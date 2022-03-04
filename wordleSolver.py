@@ -36,7 +36,28 @@ def wordleSolver(exclude,correctPosition,wrongPosition,myLexicon):
     print('Number of possible words: ',len(results))
     print(results)
 
+def cls():
+    print(f"\033c")
+cls()
+
 exc,correctPosition,wrongPosition='elo',['a','','n','',''],['','','','','']
+
+def getInformation():
+    cls()
+    global exc,correctPosition,wrongPosition
+    cls()
+    exc = exc+input("Type incorrect (grey) letters: ")
+    cls()
+    for i,j in enumerate(correctPosition):
+        if j=='':
+            correctPosition[i] = j+input(f"Type green letter in the position {i+1}:")
+        else:
+            continue
+    cls()
+    for i,j in enumerate(wrongPosition):
+        if correctPosition[i]=='':
+            wrongPosition[i] = j+input(f"Type yellow letters in the position {i+1}:")
+
 wordleSolver(exc,correctPosition,wrongPosition,wordsPath)
 # wordleSolver(incorrect letters,[correct position],[incorrect position], /path/to/words)
 # wordleSolver(grey letters,[list of green letters],[list of yellow letters], /path/to/words)
