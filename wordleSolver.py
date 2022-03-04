@@ -1,5 +1,35 @@
+import os
+import math
 import sys
-wordsPath = sys.argv[1]
+
+def cls():
+    os.system('cls' if os.name == 'nt' else 'clear')
+cls()
+
+if (len(sys.argv))==1:
+    wordsPath = 'nytAnswersAlphabetical.txt'
+else:
+    wordsPath = sys.argv[1]
+
+def displayGrid(arr):
+    n = len(arr)        
+    m = round(math.sqrt(n))
+    if m==0:
+        exit
+    print(m)
+    for i in range((n//m)):
+        curr,x = [],i
+        for j in range(m):
+            if j<n:
+                curr.append(arr[x])
+                if m<=math.sqrt(n):    
+                    x+=(m)
+                elif m>math.sqrt(n):
+                    x+=(m-1)
+        print(curr)
+    curr,rem = [], (n%m)
+    if rem!=0:
+        print(arr[-rem:])
 
 def wordleSolver(exclude,correctPosition,wrongPosition,myLexicon):
     results = []
@@ -34,7 +64,7 @@ def wordleSolver(exclude,correctPosition,wrongPosition,myLexicon):
             results.append(word)
     
     print('Number of possible words: ',len(results))
-    print(results)
+    displayGrid(results)
 
 exc,correctPosition,wrongPosition='elo',['a','','n','',''],['','','','','']
 
@@ -54,10 +84,10 @@ def getInformation():
         if correctPosition[i]=='':
             wrongPosition[i] = j+input(f"Type yellow letters in the position {i+1}:")
 
-words = sys.argv[1]
+
 
 # wordleSolve)
-('aaiaidee',['a','i','','e',''],['','','','',''],words)
+('aaiaidee',['a','i','','e',''],['','','','',''],wordsPath)
 
 input(f'''
 - Throughout this program, you will be inputting letters from the wordle you are trying to solve.
@@ -72,21 +102,15 @@ input(f'''
 
 ''')
 
-def cls():
-    print(f"\033c")
-cls()
-
 x=0
 while 1:
     print(x)
     x+=1
     getInformation()
     cls()
-    wordleSolver(exc,correctPosition,wrongPosition,words)
+    wordleSolver(exc,correctPosition,wrongPosition,wordsPath)
     input("\n\nPress any key to continue. . .")
     cls()
-
-
 
 # wordleSolver(incorrect letters,[correct position],[incorrect position], /path/to/words)
 # wordleSolver(grey letters,[list of green letters],[list of yellow letters], /path/to/words)
